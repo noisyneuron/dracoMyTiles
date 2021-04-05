@@ -19,20 +19,20 @@ async function getFiles(dir) {
 
 async function main() {
   if (argv.input) {
-    const inputDir = path.resolve(__dirname, argv.input)
+    const inputDir = path.resolve('', argv.input)
     const files = await getFiles(inputDir)
 
     if (files.length === 0) {
       console.log(`no .b3dm files anywhere inside ${inputDir} ... BYE`)
       process.exit(1)
     }
-
-    files.forEach( (file, index) => {
-      console.log(`converting ${index} of ${files.length} \n FILE:${file}`)
-      dracoCompressB3dm(file, file, true)
+    
+    files.forEach((file, index) => {
+      dracoCompressB3dm(file, argv.quality ? Number(argv.quality) : 100, argv.quality !== undefined)
     })
   } else {
     console.log('gimme an input directory yo')
   }
 }
+
 main()
