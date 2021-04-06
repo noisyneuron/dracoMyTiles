@@ -27,9 +27,10 @@ async function main() {
       process.exit(1)
     }
     
-    files.forEach((file, index) => {
+    for(let i=0; i<files.length; i++) {
+      const file = files[i]
       dracoCompressB3dm(file, argv.quality ? Number(argv.quality) : 100, argv.quality !== undefined)
-    })
+    }
   } else {
     console.log('gimme an input directory yo')
   }
